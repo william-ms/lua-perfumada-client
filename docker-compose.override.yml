@@ -1,0 +1,15 @@
+services:
+  node:
+    build:
+      context: ./spa
+      dockerfile: ../docker/node/Dockerfile
+    volumes:
+      - ./spa/src/:/usr/src/app/src/
+    expose:
+      - "5173"
+    ports:
+      - "5173:5173"
+    command: npm run dev
+
+  nginx:
+    command: echo "Nginx disabled in development"

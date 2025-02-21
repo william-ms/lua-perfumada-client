@@ -1,0 +1,25 @@
+volumes:
+  build-volume:
+
+services:
+  node:
+    build:
+      context: ./spa
+      dockerfile: ../docker/node/Dockerfile
+    container_name: client_node
+    volumes:
+      - ./spa/src/:/usr/src/app/src/
+      - build-volume:/usr/src/app/dist
+    command: sh -c "npm install && npm run build"
+
+  nginx:
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    container_name: client_nginx
+    ports:
+      - "8000:80"
+    volumes:
+      - build-volume:/usr/share/nginx/html:ro
+    depends_on:
+      - node
