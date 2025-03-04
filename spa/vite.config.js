@@ -12,4 +12,9 @@ export default defineConfig({
 			interval: 100,
 		},
 	},
+	resolve: {
+		alias: {
+			"@tabler/icons-react": "@tabler/icons-react/dist/esm/icons/index.mjs",
+		},
+	},
 });
