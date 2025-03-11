@@ -19,6 +19,7 @@ services:
     container_name: client_nginx
     ports:
       - "8000:80"
+      - "8443:443"
     volumes:
       - build-volume:/usr/share/nginx/html:ro
     depends_on:
